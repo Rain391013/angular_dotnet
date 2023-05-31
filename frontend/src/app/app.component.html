@@ -1,0 +1,89 @@
+<div class="main-table btn-margin">
+  <button class="btn-primary btn-add-back" *ngIf="!isCreate && !isEdit" (click)="isCreate=true;">Add Bike</button>
+  <button class="btn-primary btn-add-back" *ngIf="isCreate || isEdit" (click)="back()">Back</button>
+  <button class="btn-primary btn-save" *ngIf="isCreate" (click)="createNewBike()">Save</button>
+  <button class="btn-primary btn-save" *ngIf="isEdit" (click)="editBike()">Save</button>
+</div>
+
+<div class="main-table" *ngIf="!isCreate && !isEdit">
+  <table >
+    <thead>
+      <tr>
+        <th width="100px">Number</th>
+        <th width="200px">Manufacture</th>
+        <th width="300px">Model</th>
+        <th width="200px">Frame Size</th>
+        <th width="100px">Price</th>
+        <th width="200px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bike of this.bikeArray; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{bike.manufacture}}</td>
+        <td>{{bike.model}}</td>
+        <td>{{bike.frameSize}}</td>
+        <td>{{bike.price}}</td>
+        <td>
+          <div class="btn-edit-delete-action">
+            <button class="btn-primary btn-edit" (click)="edit(bike)">Edit</button>
+            <button class="btn-primary btn-delete" (click)="deleteBike(bike.id)">Delete</button>
+          </div>
+          
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="main-table" *ngIf="isCreate">
+
+  <div>
+    <label for="name">Manufacture</label>
+    <input [(ngModel)]="newBikeManufacture" type="text" placeholder="Bike Manufacture" />
+  </div>
+
+  <div>
+    <label for="name">Model</label>
+    <input [(ngModel)]="newBikeModel"  type="text" placeholder="Bike Model" />
+  </div>
+
+  <div>
+    <label for="name">Frame Size</label>
+    <input [(ngModel)]="newBikeFrame"  type="text" placeholder="Bike Frame Size" />
+  </div>
+
+  <div>
+    <label for="name">Price</label>
+    <input [(ngModel)]="newBikePrice"  type="text" placeholder="Bike Price" />
+  </div>
+  
+</div>
+
+
+<div class="main-table" *ngIf="isEdit">
+
+  <div>
+    <label for="name">Manufacture</label>
+    <input [(ngModel)]="editBikeManufacture" type="text"/>
+  </div>
+
+  <div>
+    <label for="name">Model</label>
+    <input [(ngModel)]="editBikeModel" type="text"/>
+  </div>
+
+  <div>
+    <label for="name">Frame Size</label>
+    <input [(ngModel)]="editBikeFrame" type="text"/>
+  </div>
+
+  <div>
+    <label for="name">Price</label>
+    <input [(ngModel)]="editBikePrice" type="text"/>
+  </div>
+
+</div>
